@@ -23,7 +23,7 @@ class AnalyseDatabase(TinyDB):
         result = self.analysis.search(analysis.job_id == job_id)
         return result
     
-    def get_resum_by_job_id(self, job_id):
+    def get_resums_by_job_id(self, job_id):
         resum = Query()
         result = self.resums.search(resum.job_id == job_id)
         return result

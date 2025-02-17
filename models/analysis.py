@@ -8,5 +8,5 @@ class Analysis(BaseModel):
     name: str
     skills: List[str]
     education: List[str]
-    language: List[str]
+    #language: List[str]
     score: float
