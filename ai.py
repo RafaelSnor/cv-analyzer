@@ -15,6 +15,7 @@ class GroqClient:
     
     def resume_cv(self, cv):
         prompt = f'''
+            Responda em portugues brasileiro
             **Solicitação de Resumo de Currículo em Markdown:**
             
             # Curriculo do candidato para resumir:

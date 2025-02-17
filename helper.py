@@ -51,7 +51,7 @@ def extract_data_analysis(resum_cv, job_id, resum_id, score) -> Analysis:
                 secoes_dict[secao] = [clean_string(item) for item in match.group(1).split('\n') if item.strip()]
 
     # Validação para garantir que nenhuma seção obrigatória esteja vazia
-    for key in ["name", "education", "skills"]:
+    for key in ["name", "education", "skills", "languages"]:
         if not secoes_dict[key] or (isinstance(secoes_dict[key], list) and not any(secoes_dict[key])):
             raise ValueError(f"A seção '{key}' não pode ser vazia ou uma string vazia.")
 
