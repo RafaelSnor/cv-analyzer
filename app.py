@@ -111,7 +111,7 @@ if option:
                 with st.container():
                     if resum_data := database.get_resum_by_id(row[1]['Resum ID']):
                         st.markdown(resum_data.get('content')) # Exibe o resumo do currículo
-                        st.markdown(resum_data.get('opnion')) # Exibe a opnião da IA sobre o curriculo
+                        st.markdown(resum_data.get('opinion')) # Exibe a opnião da IA sobre o curriculo
 
                         # Exibe um botão para download do currículo em PDF
                         with open(resum_data.get('file'), "rb") as pdf_file:

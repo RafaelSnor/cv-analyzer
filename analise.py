@@ -4,6 +4,15 @@ from database import AnalyseDatabase
 from ai import GroqClient
 from models.resum import Resum
 from models.file import File
+from models.analysis import Analysis
+import download_cv
+
+
+# Descarga de archivos ##
+
+folder_id = '1PzWYRJmC4jaUIIFdCpKV0UGVMKBdu1fO'
+download_cv.download_files_from_folder(folder_id)
+
 
 database = AnalyseDatabase()
 ai = GroqClient()
@@ -39,5 +48,6 @@ for path in cv_paths:
     analysis_schema = extract_data_analysis(resum, job.get('id'), resum_schema.id, score)
     database.resums.insert(resum_schema.model_dump())
     database.files.insert(file_schema.model_dump())
+    database.analysis.insert(analysis_schema.model_dump())
 
 

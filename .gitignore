@@ -1,6 +1,9 @@
 #personalizados
 credentials.json
 token.json
+*.pdf
+*.lock
+*.toml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
