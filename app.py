@@ -4,11 +4,22 @@ import pandas as pd
 from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode
 from database import AnalyseDatabase
 
+import subprocess
+
 # Inicializa a base de dados
 database = AnalyseDatabase()
 
 # Configura a página do Streamlit com layout largo e título "Recrutador"
 st.set_page_config(layout="wide", page_title="Leila Silva - Analisador de CV", page_icon=":rocket:")
+
+
+# Botón para ejecutar analise.py
+
+if st.button("Executar Análise de Currículos"):
+    with st.spinner("Executando análise..."):
+        result = subprocess.run(["python", "analise.py"], capture_output=True, text=True)
+        #st.text_area("Salida del análisis:", result.stdout)
+    st.success("Análisis completado.")  # Mensaje de éxito
 
 # Cria um menu de seleção para escolher uma vaga disponível na base de dados
 option = st.selectbox(
