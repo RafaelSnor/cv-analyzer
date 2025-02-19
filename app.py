@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode
 from database import AnalyseDatabase
+from helper import delete_files_resum, delete_all_resum_files
 
 import subprocess
 
@@ -17,16 +18,18 @@ st.set_page_config(layout="wide", page_title="Leila Silva - Analisador de CV", p
 
 if st.button("Executar Análise de Currículos"):
     with st.spinner("Executando análise..."):
+        delete_all_resum_files()  # Deleta os arquivos dos currículos
         result = subprocess.run(["python", "analise.py"], capture_output=True, text=True)
-        #st.text_area("Salida del análisis:", result.stdout)
+        st.text_area("Salida del análisis:", result.stdout)
     st.success("Análisis completado.")  # Mensaje de éxito
 
 # Cria um menu de seleção para escolher uma vaga disponível na base de dados
-option = st.selectbox(
-    "Escolha sua vaga:",
-    [job.get('name') for job in database.jobs.all()],
-    index=None
-)
+if st.success:
+    option = st.selectbox(
+        "Escolha sua vaga:",
+        [job.get('name') for job in database.jobs.all()],
+        index=None
+    )
 
 # Inicializa a variável `data`
 data = None
@@ -80,8 +83,11 @@ if option:
     grid_options = gb.build()
 
     # Exibe um gráfico de barras com as pontuações dos candidatos
-    st.subheader('Classificação dos Candidatos')
-    st.bar_chart(df, x="Nome", y="Score", color="Nome", horizontal=True)
+    if not df.empty:
+        st.subheader('Classificação dos Candidatos')
+        st.bar_chart(df, x="Nome", y="Score", color="Nome", horizontal=True)
+    else:
+        st.warning("Nenhum candidato analisado para exibir no gráfico.")
 
     # Exibe a tabela interativa usando AgGrid
     response = AgGrid(
@@ -99,12 +105,6 @@ if option:
     # Obtém os currículos relacionados à vaga
     resums = database.get_resums_by_job_id(job.get('id'))
 
-    # Função para deletar os arquivos dos currículos
-    def delete_files_resum(resums):
-        for resum in resums:
-            path = resum.get('file')
-            if os.path.isfile(path):
-                os.remove(path)
 
     # Botão para limpar as análises e deletar os currículos
     if st.button('Limpar Análise'):

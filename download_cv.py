@@ -9,10 +9,11 @@ def download_files_from_folder(folder_id):
     service = build('drive', 'v3', credentials=creds)
 
     results = service.files().list(
-        q=f"'{folder_id}' in parents", fields='files(id, name)'
+        q=f"'{folder_id}' in parents", fields='files(id, name)', supportsAllDrives=True
     ).execute()
 
     files = results.get('files', [])
+    print(files)
 
     if not files:
         raise FileNotFoundError('No files found in the folder')

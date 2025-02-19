@@ -66,3 +66,22 @@ def get_pdf_paths(directory):
             pdf_files.append(file_path)
 
     return pdf_files
+
+# Função para deletar os arquivos dos currículos
+def delete_files_resum(resums):
+    for resum in resums:
+        path = resum.get('file')
+        if os.path.isfile(path):
+            os.remove(path)
+
+
+# Função para deletar todos os arquivos dos currículos
+def delete_all_resum_files(directory="curriculos"):
+    if os.path.exists(directory) and os.path.isdir(directory):
+        for file in os.listdir(directory):
+            file_path = os.path.join(directory, file)
+            if os.path.isfile(file_path):  # Verifica que es un archivo
+                os.remove(file_path)
+        print(f"Todos os arquivos em '{directory}' foram deletados.")
+    else:
+        print(f"O diretório '{directory}' não existe.")
