@@ -18,7 +18,7 @@ st.set_page_config(layout="wide", page_title="Leila Silva - Analisador de CV", p
 
 if st.button("Executar Análise de Currículos"):
     with st.spinner("Executando análise..."):
-        delete_all_resum_files()  # Deleta os arquivos dos currículos
+        #delete_all_resum_files()  # Deleta os arquivos dos currículos
         result = subprocess.run(["python", "analise.py"], capture_output=True, text=True)
         st.text_area("Salida del análisis:", result.stdout)
     st.success("Análisis completado.")  # Mensaje de éxito

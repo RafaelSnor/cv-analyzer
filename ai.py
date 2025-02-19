@@ -10,7 +10,9 @@ class GroqClient:
         self.client = ChatGroq(model=self.model_id)
 
     def generate_response(self, prompt):
+        print("Iniciando llamado a la IA...")
         response = self.client.invoke(prompt)
+        print("Llamado a la IA finalizado.")
         return response.content
     
     def resume_cv(self, cv):
