@@ -1,6 +1,8 @@
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 from google.oauth2.credentials import Credentials
+import os
+
 
 def download_files_from_folder(folder_id):
     SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
@@ -18,6 +20,14 @@ def download_files_from_folder(folder_id):
     if not files:
         raise FileNotFoundError('No files found in the folder')
     else:
+        # Ruta del directorio donde se guardarán los archivos
+        curriculos_dir = "./curriculos"
+        # Verifica si la carpeta existe, si no, la crea
+        if not os.path.exists(curriculos_dir):
+            os.makedirs(curriculos_dir)
+            print("Creando carpeta curriculos")
+        print("Existe la carpeta curriculos")
+        
         for file in files:
             requests = service.files().get_media(fileId=file['id'])
             file_path = f"./curriculos/{file['name']}"
