@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode
 from database import AnalyseDatabase
-from helper import delete_files_resum, delete_all_resum_files
+from helper import delete_files_resum
 
 import subprocess
 
