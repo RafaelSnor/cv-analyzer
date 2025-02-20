@@ -1,7 +1,7 @@
 #personalizados
 credentials.json
 token.json
-*.pdf
+#*.pdf
 *.lock
 *.toml
 .streamlit/
