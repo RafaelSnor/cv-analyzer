@@ -8,8 +8,6 @@ from models.analysis import Analysis
 import download_cv
 import authenticate
 
-# Auth con Google Drive ##
-authenticate.authenticate()
 
 # Descarga de archivos ##
 folder_id = '1PzWYRJmC4jaUIIFdCpKV0UGVMKBdu1fO'

@@ -1,6 +1,7 @@
 #personalizados
 credentials.json
 token.json
+borrar.py
 *.pdf
 *.lock
 *.toml
