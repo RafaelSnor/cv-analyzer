@@ -1,10 +1,10 @@
 #personalizados
 credentials.json
-token.json
-#*.pdf
+*.pdf
 *.lock
 *.toml
 .streamlit/
+*.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
