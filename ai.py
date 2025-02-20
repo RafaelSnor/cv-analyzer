@@ -9,8 +9,8 @@ GROQ_API_KEY = st.secrets["api_keys"]["GROQ_API_KEY"]
 class GroqClient:
     def __init__(self, model_id='llama-3.3-70b-versatile') -> None:
         self.model_id = model_id
-        self.client = ChatGroq(model=self.model_id)
-        #self.client = ChatGroq(model=self.model_id, groq_api_key=GROQ_API_KEY)
+        #self.client = ChatGroq(model=self.model_id)
+        self.client = ChatGroq(model=self.model_id, groq_api_key=GROQ_API_KEY)
 
     def generate_response(self, prompt):
         print("Iniciando llamado a la IA...")
