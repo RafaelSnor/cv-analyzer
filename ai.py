@@ -1,16 +1,17 @@
-from langchain_groq import ChatGroq
 import re
-#from dotenv import load_dotenv
-#load_dotenv()
-import streamlit as st
+import os
+from langchain_groq import ChatGroq
+from dotenv import load_dotenv
+load_dotenv()
 
-GROQ_API_KEY = st.secrets["api_keys"]["GROQ_API_KEY"]
 
 class GroqClient:
     def __init__(self, model_id='llama-3.3-70b-versatile') -> None:
         self.model_id = model_id
+        self.api_key = model_id
+        self.api_key = os.getenv('GROQ_API_KEY')
         #self.client = ChatGroq(model=self.model_id)
-        self.client = ChatGroq(model=self.model_id, groq_api_key=GROQ_API_KEY)
+        self.client = ChatGroq(model=self.model_id, groq_api_key=self.api_key)
 
     def generate_response(self, prompt):
         print("Iniciando llamado a la IA...")
