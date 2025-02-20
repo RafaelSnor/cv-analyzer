@@ -1,10 +1,10 @@
 #personalizados
 credentials.json
+token.json
 *.pdf
 *.lock
 *.toml
 .streamlit/
-*.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -177,5 +177,4 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-token.json
-token.json
+
