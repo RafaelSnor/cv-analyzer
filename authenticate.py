@@ -15,7 +15,7 @@ def authenticate():
     token_data = os.getenv("TOKEN_JSON")
     if token_data:
         creds_dict = json.loads(token_data)
-        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+        creds = Credentials.from_authorized_user_file(creds_dict, SCOPES)
     if os.path.exists("token.json"):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
         print("Credenciales cargadas al archivo token.json")

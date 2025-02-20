@@ -6,7 +6,7 @@ load_dotenv()
 
 
 class GroqClient:
-    def __init__(self, model_id='llama-3.3-70b-versatile') -> None:
+    def __init__(self, model_id='deepseek-r1-distill-llama-70b') -> None:
         self.model_id = model_id
         self.api_key = model_id
         self.api_key = os.getenv('GROQ_API_KEY')
@@ -15,8 +15,11 @@ class GroqClient:
 
     def generate_response(self, prompt):
         print("Iniciando llamado a la IA...")
-        response = self.client.invoke(prompt)
-        print("Llamado a la IA finalizado.")
+        try:
+            response = self.client.invoke(prompt)
+            print("Llamado a la IA finalizado.")
+        except Exception as e:
+            print(f"Error en el llamado a la IA {e}.")
         return response.content
     
     def resume_cv(self, cv):
