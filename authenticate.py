@@ -1,3 +1,5 @@
+import os
+import json
 import os.path
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -10,6 +12,10 @@ SCOPES =['https://www.googleapis.com/auth/drive.file',
 
 def authenticate():
     creds = None
+    token_data = os.getenv("TOKEN_JSON")
+    if token_data:
+        creds_dict = json.loads(token_data)
+        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
     if os.path.exists("token.json"):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
         print("Credenciales cargadas al archivo token.json")
